@@ -143,8 +143,37 @@ jobs:
         key: chain-data-${{ hashFiles('testnet_v1_1/docker-compose.yml') }}-${{ github.sha }}
         restore-keys: |
           chain-data-${{ hashFiles('testnet_v1_1/docker-compose.yml') }}
+    
+    - name: Run a Godwoken testnet_v1 readonly node
+      working-directory: testnet_v1_1
+      run: |
+        cat docker-compose.yml
+        docker-compose up -d gw-readonly
+        docker-compose ps
+
+    - name: Wait until Godwoken readonly node is ready to serve
+      id: gw-readonly-node
+      working-directory: testnet_v1_1
+      env:
+        TIMEOUT: 5h
+      run: |
+        docker-compose ps
+        echo "Wait until Godwoken readonly node is ready to serve"
+        timeout ${{ env.TIMEOUT }} bash -c 'while true; do
+          docker-compose logs --tail=10 &> /tmp/docker.log
+          egrep "bad block" /tmp/docker.log && bad_block_found=true && break
+          egrep "sync new block" /tmp/docker.log | tail --lines=1
+          docker-compose ps gw-readonly | egrep healthy && break \
+          || echo "Godwoken readonly node is not healthy."
+          sleep 6s
+        done' || exit 0
+        [[ $bad_block_found == true ]] && exit 1
+        docker-compose ps
+        docker-compose ps gw-readonly | egrep healthy \
+        && echo "::set-output name=state::healthy"
        
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
+      if: ${{ failure() }}
       with:
         limit-access-to-actor: true

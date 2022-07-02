@@ -8,11 +8,13 @@ node_mode = 'readonly'
 # indexer_url = 'https://testnet.ckbapp.dev/indexer'
 
 # Local Nodes
-indexer_url = 'http://ckb-testnet-indexer:8116'
+indexer_url = 'http://172.31.40.63:18116'
+ckb_url = 'http://172.31.40.63:38114'
+# indexer_url = 'http://ckb-testnet-indexer:8116'
 # ckb_url = 'http://172.17.0.1:38114'
 
 # Backup Nodes
-ckb_url = 'http://3.83.107.217:8114'
+# ckb_url = 'http://3.83.107.217:8114'
 # indexer_url = 'http://3.83.107.217:8116'
 
 [rpc_server]
