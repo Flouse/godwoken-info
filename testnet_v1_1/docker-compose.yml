@@ -11,7 +11,7 @@ services:
   # see: https://docs.nervos.org/docs/basics/guides/run-ckb-with-docker#run-a-ckb-testnet-node
   gw-readonly:
     container_name: gw-testnet_v1-readonly
-    image: ghcr.io/flouse/godwoken-prebuilds:v1.8.0-rc1-smt-trie-202212150858
+    image: ghcr.io/sopium/godwoken:dev-debug-completed-initial-syncing-202212201244
     expose: [8119, 8219]
     healthcheck:
       test: /bin/gw-healthcheck.sh
