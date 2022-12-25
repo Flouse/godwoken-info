@@ -59,6 +59,14 @@ generator_path = '/scripts/godwoken-polyjuice-v1.5.0/generator'
 validator_script_type_hash = '0x83d5d8841518e8db686909d27c821398491f475ed5f1cd392c36e83f4252c4ac'
 backend_type = 'Polyjuice'
 
+# 2022-12-25 1:18
+[[fork.backend_forks]]
+fork_height = 304440
+[[fork.backend_forks.backends]]
+validator_path = '/scripts/godwoken-polyjuice/validator'
+generator_path = '/scripts/godwoken-polyjuice/generator'
+validator_script_type_hash = '0x83d5d8841518e8db686909d27c821398491f475ed5f1cd392c36e83f4252c4ac'
+backend_type = 'Polyjuice'
 
 [genesis]
 timestamp = 1655830128000
