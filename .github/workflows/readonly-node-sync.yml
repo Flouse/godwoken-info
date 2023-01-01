@@ -13,8 +13,8 @@ jobs:
     runs-on: self-hosted
     env:
       # local CKB node on the self-hosted runner
-      CKB_MAINNET_RPC: http://172.31.40.63:28114
-      CKB_MAINNET_INDEXER: http://172.31.40.63:28116
+      CKB_MAINNET_RPC: http://172.31.10.185:18114
+      CKB_MAINNET_INDEXER: http://172.31.10.185:18116
 
     steps:
     - uses: actions/checkout@v3
@@ -33,8 +33,6 @@ jobs:
       working-directory: mainnet_v1
       run: |
         sed -i -e "s|ckb_url.*|ckb_url = '$CKB_MAINNET_RPC'|" \
-          gw-mainnet_v1-config-readonly.toml
-        sed -i -e "s|indexer_url.*|indexer_url = '$CKB_MAINNET_INDEXER'|" \
           gw-mainnet_v1-config-readonly.toml
 
     # https://github.com/KengoTODA/actions-setup-docker-compose/tree/v1.0.16
@@ -161,8 +159,7 @@ jobs:
     if: contains(github.ref_name, 'testnet') || github.event_name == 'workflow_dispatch'
     runs-on: self-hosted
     env:
-      CKB_TESTNET_RPC: http://172.31.40.63:38114
-      CKB_TESTNET_INDEXER: http://172.31.40.63:18116
+      CKB_TESTNET_RPC: http://172.31.10.185:28114
     
     steps:
     - uses: actions/checkout@v3
@@ -181,8 +178,6 @@ jobs:
       working-directory: testnet_v1_1
       run: |
         sed -i -e "s|ckb_url.*|ckb_url = '$CKB_TESTNET_RPC'|" \
-          gw-testnet_v1-config-readonly.toml
-        sed -i -e "s|indexer_url.*|indexer_url = '$CKB_TESTNET_INDEXER'|" \
           gw-testnet_v1-config-readonly.toml
     
     # https://github.com/KengoTODA/actions-setup-docker-compose/tree/v1.0.16
