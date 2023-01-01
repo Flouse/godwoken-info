@@ -13,7 +13,8 @@ jobs:
     runs-on: self-hosted
     env:
       # local CKB node on the self-hosted runner
-      CKB_MAINNET_RPC: http://172.31.10.185:28114
+      CKB_MAINNET_RPC: http://172.31.10.185:18114
+      # CKB_MAINNET_INDEXER: http://172.31.10.185:18116
 
     steps:
     - uses: actions/checkout@v3
