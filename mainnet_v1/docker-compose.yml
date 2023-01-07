@@ -8,8 +8,8 @@ volumes:
 services:
   gw-readonly:
     container_name: gw-mainnet_v1-readonly
-    # https://github.com/Flouse/godwoken/pkgs/container/godwoken/61617951?tag=v1.7.3-hotfix.2
-    image: ghcr.io/flouse/godwoken:v1.7.3-hotfix.2
+    # https://github.com/Flouse/godwoken/pkgs/container/godwoken/62099287?tag=v1.7.3-hotfix.3
+    image: ghcr.io/flouse/godwoken:v1.7.3-hotfix.3
     expose: [8119, 8219]
     healthcheck:
       test: /bin/gw-healthcheck.sh
