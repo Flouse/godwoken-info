@@ -73,7 +73,7 @@ max_cycles_limit = '1950000000'
 # https://github.com/godwokenrises/godwoken/blob/v1.7.0/crates/config/src/config.rs#L579-L599
 
 [store]
-path = '/mnt/testnet-20230210.rocksdb'
+path = '/mnt/testnet-20230215.rocksdb'
 options_file = '/deploy/db.toml'
 cache_size = 536870912
 
