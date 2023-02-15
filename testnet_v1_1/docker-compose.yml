@@ -31,12 +31,13 @@ services:
       bash -c 'set -ex
         # migrate command for SMT trie feature, only needs to be run on first activation
         godwoken migrate --config /deploy/config.toml | tee -a /mnt/smt-migrate.log
+
         # use this command to rewind the chain to the last valid block, if the node has encountered
         # some bad blocks accidentally due to e.g. version/configuration differences.
         # see also: https://github.com/godwokenrises/godwoken/pull/832
         # godwoken rewind-to-last-valid-block --config-path /deploy/config.toml
-        #migrated execute
-        #godwoken run -c /deploy/config.toml
+
+        godwoken run -c /deploy/config.toml
       '
     deploy:
       restart_policy:
