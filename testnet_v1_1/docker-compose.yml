@@ -53,6 +53,9 @@ services:
       POSTGRES_PASSWORD: your_password
     volumes:
     - testnet_v1-web3-indexer-data:/var/lib/postgresql/data
+    healthcheck:
+      # https://www.postgresql.org/docs/current/app-pg-isready.html
+      test: pg_isready
   
   redis:
     image: redis:bullseye
@@ -73,7 +76,7 @@ services:
       redis:
         condition: service_started
       postgres:
-        condition: service_started
+        condition: service_healthy
       gw-readonly:
         condition: service_healthy
 
