@@ -11,7 +11,7 @@ services:
   # see: https://docs.nervos.org/docs/basics/guides/run-ckb-with-docker#run-a-ckb-testnet-node
   gw-readonly:
     container_name: gw-testnet_v1-readonly
-    image: ghcr.io/flouse/godwoken:1.12-rc-poly-1.5.3-smt-trie
+    image: ghcr.io/flouse/godwoken:1.12-rc-poly1.5.3-smt-trie
     expose: [8119, 8219]
     healthcheck:
       test: /bin/gw-healthcheck.sh
@@ -30,7 +30,7 @@ services:
     command: |
       bash -c 'set -ex
         # migrate command for SMT trie feature, only needs to be run on first activation
-        # godwoken migrate --config /deploy/config.toml | tee -a /mnt/smt-migrate.log
+        godwoken migrate --config /deploy/config.toml | tee -a /mnt/smt-migrate.log
 
         # use this command to rewind the chain to the last valid block, if the node has encountered
         # some bad blocks accidentally due to e.g. version/configuration differences.
